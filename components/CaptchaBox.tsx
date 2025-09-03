@@ -10,9 +10,11 @@ import { generateCaptchaCode } from "@/lib/validation";
 
 interface CaptchaBoxProps {
   onVerificationComplete: (isValid: boolean) => void;
+  onSubmit: () => void;
+  isSubmitting: boolean;
 }
 
-export function CaptchaBox({ onVerificationComplete }: CaptchaBoxProps) {
+export function CaptchaBox({ onVerificationComplete, onSubmit, isSubmitting }: CaptchaBoxProps) {
   const [captchaCode, setCaptchaCode] = useState(generateCaptchaCode());
   const [userInput, setUserInput] = useState("");
   const [isVerified, setIsVerified] = useState(false);
@@ -101,6 +103,32 @@ export function CaptchaBox({ onVerificationComplete }: CaptchaBoxProps) {
               ✓ Security verification completed successfully
             </div>
           )}
+
+          <div className="pt-4 border-t">
+            <Button
+              type="button"
+              size="sm"
+              className="w-full bg-blue-900 hover:bg-blue-800 text-white"
+              disabled={!isVerified || isSubmitting}
+              aria-disabled={!isVerified || isSubmitting}
+              onClick={onSubmit}
+            >
+              {isSubmitting ? "Submitting..." : "Submit Complaint"}
+            </Button>
+            {!isVerified && (
+              <p className="text-xs text-muted-foreground text-center mt-2">
+                Please complete the security verification above to submit your complaint.
+              </p>
+            )}
+          </div>
+
+          <div className="pt-4 border-t">
+            <div className="text-xs text-muted-foreground text-center">
+              <p className="font-medium mb-1">Sterling Mutuals Inc.</p>
+              <p>1090 University Ave. West, 2nd Floor</p>
+              <p>Windsor, Ontario</p>
+            </div>
+          </div>
         </div>
       </CardContent>
     </Card>

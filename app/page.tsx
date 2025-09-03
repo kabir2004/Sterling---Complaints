@@ -237,27 +237,11 @@ export default function Home() {
               <FileDropzone onFilesChange={setUploadedFiles} />
 
               {/* Security Verification */}
-              <CaptchaBox onVerificationComplete={setIsCaptchaVerified} />
-
-              {/* Submit Button */}
-              <Card>
-                <CardContent className="pt-6">
-                  <Button
-                    type="submit"
-                    size="lg"
-                    className="w-full bg-blue-900 hover:bg-blue-800 text-white"
-                    disabled={!isCaptchaVerified || isSubmitting}
-                    aria-disabled={!isCaptchaVerified || isSubmitting}
-                  >
-                    {isSubmitting ? "Submitting..." : "Submit Complaint"}
-                  </Button>
-                  {!isCaptchaVerified && (
-                    <p className="text-sm text-muted-foreground text-center mt-2">
-                      Please complete the security verification above to submit your complaint.
-                    </p>
-                  )}
-                </CardContent>
-              </Card>
+              <CaptchaBox 
+                onVerificationComplete={setIsCaptchaVerified} 
+                onSubmit={handleSubmit(onSubmit)}
+                isSubmitting={isSubmitting}
+              />
             </form>
           </div>
 
