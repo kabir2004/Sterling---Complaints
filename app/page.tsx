@@ -347,7 +347,7 @@ export default function Home() {
                   />
                   <div className="flex justify-end">
                     <span className="text-xs text-muted-foreground">
-                      {watch("supportingDocumentation", "").length} characters
+                      {(watch("supportingDocumentation") || "").length} characters
                     </span>
                   </div>
                 </div>
