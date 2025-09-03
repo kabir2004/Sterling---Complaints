@@ -106,6 +106,60 @@ export default function Home() {
     });
   };
 
+  const handleDirectSubmit = async () => {
+    if (!isCaptchaVerified) {
+      toast.error("Please complete the security verification first");
+      return;
+    }
+
+    // Get current form values
+    const formData = watch();
+    
+    // Validate required fields manually
+    if (!formData.fullName || !formData.email || !formData.sterlingAdvisorName || !formData.complaintDescription) {
+      toast.error("Please fill in all required fields");
+      return;
+    }
+
+    if (formData.complaintDescription.length < 200) {
+      toast.error("Please provide at least 200 characters for your complaint description");
+      return;
+    }
+
+    setIsSubmitting(true);
+    
+    // Simulate form submission
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    
+    // Generate ticket number
+    const newTicketNumber = generateTicketNumber();
+    setTicketNumber(newTicketNumber);
+    
+    // Prepare complaint data for success screen
+    const complaintData = {
+      fullName: formData.fullName,
+      email: formData.email,
+      phoneNumber: formData.phoneNumber,
+      sterlingAdvisorName: formData.sterlingAdvisorName,
+      complaintDescription: formData.complaintDescription,
+      supportingDocumentation: formData.supportingDocumentation,
+      uploadedFiles: uploadedFiles.map(file => ({
+        name: file.name,
+        size: file.size,
+        type: file.type
+      }))
+    };
+    
+    setSubmittedComplaint(complaintData);
+    setIsSubmitting(false);
+    setShowSuccessScreen(true);
+    
+    // Show success toast
+    toast.success("Complaint submitted", {
+      description: `Thank you. Your ticket number is ${newTicketNumber}`,
+    });
+  };
+
   const handleNewComplaint = () => {
     setShowSuccessScreen(false);
     setSubmittedComplaint(null);
@@ -297,7 +351,7 @@ export default function Home() {
               {/* Security Verification & Submit Button */}
               <CaptchaBox
                 onVerificationComplete={setIsCaptchaVerified}
-                onSubmit={() => handleSubmit(onSubmit)()}
+                onSubmit={handleDirectSubmit}
                 isSubmitting={isSubmitting}
               />
             </form>
