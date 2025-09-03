@@ -104,22 +104,24 @@ export function CaptchaBox({ onVerificationComplete, onSubmit, isSubmitting }: C
             </div>
           )}
 
-          <div className="pt-4 border-t flex justify-center">
-            <Button
-              type="button"
-              size="sm"
-              className="w-32 h-8 bg-blue-900 hover:bg-blue-800 text-white"
-              disabled={!isVerified || isSubmitting}
-              aria-disabled={!isVerified || isSubmitting}
-              onClick={onSubmit}
-            >
-              {isSubmitting ? "Submitting..." : "Submit"}
-            </Button>
-            {!isVerified && (
-              <p className="text-xs text-muted-foreground text-center mt-2">
-                Please complete the security verification above to submit your complaint.
-              </p>
-            )}
+          <div className="pt-4 border-t">
+            <div className="flex flex-col items-center gap-3">
+              <Button
+                type="button"
+                size="sm"
+                className="w-32 h-8 bg-blue-900 hover:bg-blue-800 text-white"
+                disabled={!isVerified || isSubmitting}
+                aria-disabled={!isVerified || isSubmitting}
+                onClick={onSubmit}
+              >
+                {isSubmitting ? "Submitting..." : "Submit"}
+              </Button>
+              {!isVerified && (
+                <p className="text-xs text-muted-foreground text-center">
+                  Please complete the security verification above to submit your complaint.
+                </p>
+              )}
+            </div>
           </div>
 
           <div className="pt-4 border-t">
