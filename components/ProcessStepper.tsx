@@ -29,22 +29,22 @@ const processSteps = [
 export function ProcessStepper() {
   return (
     <div className="w-full">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {processSteps.map((step) => {
           return (
-            <Card key={step.id} className="relative overflow-hidden hover:shadow-lg hover:shadow-blue-900/20 hover:border-blue-200 transition-all duration-300 group">
-              <CardContent className="p-4">
-                <div className="flex flex-col gap-3">
-                  <div className="flex justify-center">
-                    <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-blue-100 group-hover:shadow-lg group-hover:shadow-blue-900/20 transition-all duration-300">
-                      <span className="text-sm font-bold text-primary group-hover:text-blue-600 transition-colors duration-300">
-                        {step.id}
-                      </span>
-                    </div>
+            <Card key={step.id} className="relative overflow-hidden hover:shadow-xl hover:shadow-blue-900/25 hover:border-blue-300 transition-all duration-300 group border-0 shadow-sm">
+              <CardContent className="p-6">
+                <div className="flex flex-col items-center gap-4 text-center">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center group-hover:from-blue-100 group-hover:to-blue-200 group-hover:shadow-lg group-hover:shadow-blue-900/30 transition-all duration-300 border border-blue-200">
+                    <span className="text-lg font-bold text-blue-700 group-hover:text-blue-800 transition-colors duration-300">
+                      {step.id}
+                    </span>
                   </div>
-                  <div className="text-left">
-                    <h3 className="font-semibold text-xs mb-1 group-hover:text-blue-900 transition-colors duration-300">{step.title}</h3>
-                    <p className="text-xs text-muted-foreground leading-tight group-hover:text-blue-700 transition-colors duration-300">
+                  <div className="space-y-2">
+                    <h3 className="font-semibold text-sm text-gray-900 group-hover:text-blue-900 transition-colors duration-300 leading-tight">
+                      {step.title}
+                    </h3>
+                    <p className="text-xs text-gray-600 leading-relaxed group-hover:text-blue-700 transition-colors duration-300">
                       {step.description}
                     </p>
                   </div>
