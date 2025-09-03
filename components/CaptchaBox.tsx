@@ -77,7 +77,7 @@ export function CaptchaBox({ onVerificationComplete }: CaptchaBoxProps) {
               value={userInput}
               onChange={(e) => setUserInput(e.target.value)}
               placeholder="Enter the code above"
-              className={error ? "border-destructive" : ""}
+              className={`${error ? "border-destructive" : ""} focus:border-black focus:ring-black`}
               aria-describedby={error ? "captcha-error" : undefined}
             />
             {error && (
@@ -91,7 +91,7 @@ export function CaptchaBox({ onVerificationComplete }: CaptchaBoxProps) {
             type="button"
             onClick={handleVerify}
             disabled={!userInput.trim()}
-            className="w-full"
+            className="w-full bg-blue-900 hover:bg-blue-800 text-white"
           >
             Complete Security Verification
           </Button>

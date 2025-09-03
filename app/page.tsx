@@ -123,7 +123,7 @@ export default function Home() {
                       id="fullName"
                       {...register("fullName")}
                       placeholder="Enter your full name"
-                      className={errors.fullName ? "border-destructive" : ""}
+                      className={`${errors.fullName ? "border-destructive" : ""} focus:border-black focus:ring-black`}
                       aria-describedby={errors.fullName ? "fullName-error" : undefined}
                     />
                     {errors.fullName && (
@@ -142,7 +142,7 @@ export default function Home() {
                       type="email"
                       {...register("email")}
                       placeholder="your.email@company.com"
-                      className={errors.email ? "border-destructive" : ""}
+                      className={`${errors.email ? "border-destructive" : ""} focus:border-black focus:ring-black`}
                       aria-describedby={errors.email ? "email-error" : undefined}
                     />
                     {errors.email && (
@@ -160,6 +160,7 @@ export default function Home() {
                     type="tel"
                     {...register("phoneNumber")}
                     placeholder="(555) 123-4567"
+                    className="focus:border-black focus:ring-black"
                   />
                 </div>
               </SectionCard>
@@ -174,7 +175,7 @@ export default function Home() {
                     id="sterlingAdvisorName"
                     {...register("sterlingAdvisorName")}
                     placeholder="Name of your Sterling Advisor"
-                    className={errors.sterlingAdvisorName ? "border-destructive" : ""}
+                    className={`${errors.sterlingAdvisorName ? "border-destructive" : ""} focus:border-black focus:ring-black`}
                     aria-describedby={errors.sterlingAdvisorName ? "advisor-error" : undefined}
                   />
                   {errors.sterlingAdvisorName && (
@@ -198,7 +199,7 @@ export default function Home() {
                     id="complaintDescription"
                     {...register("complaintDescription")}
                     placeholder="Please provide a detailed description of your complaint..."
-                    className={`min-h-32 ${errors.complaintDescription ? "border-destructive" : ""}`}
+                    className={`min-h-32 ${errors.complaintDescription ? "border-destructive" : ""} focus:border-black focus:ring-black`}
                     aria-describedby={errors.complaintDescription ? "complaint-error" : "complaint-help"}
                   />
                   <div className="flex justify-between items-center text-sm">
@@ -227,7 +228,7 @@ export default function Home() {
                     id="supportingDocumentation"
                     {...register("supportingDocumentation")}
                     placeholder="List any supporting documentation you have (e.g., statements, emails, correspondence, etc.)"
-                    className="min-h-20"
+                    className="min-h-20 focus:border-black focus:ring-black"
                   />
                 </div>
               </SectionCard>
@@ -244,7 +245,7 @@ export default function Home() {
                   <Button
                     type="submit"
                     size="lg"
-                    className="w-full"
+                    className="w-full bg-blue-900 hover:bg-blue-800 text-white"
                     disabled={!isCaptchaVerified || isSubmitting}
                     aria-disabled={!isCaptchaVerified || isSubmitting}
                   >
