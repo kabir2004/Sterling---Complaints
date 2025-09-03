@@ -201,11 +201,19 @@ export default function Home() {
       <div className="bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="text-center">
+            {/* Company Logo */}
+            <div className="mb-8">
+              <div className="inline-flex items-center justify-center w-20 h-20 bg-blue-900 rounded-full mb-4">
+                <span className="text-white text-2xl font-bold">SM</span>
+              </div>
+              <h2 className="text-xl font-semibold text-gray-700">Sterling Mutuals Inc.</h2>
+            </div>
+            
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
               Submit Your Complaint
             </h1>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Sterling Mutuals Inc. takes client complaints very seriously. We have developed detailed complaint procedures to address your concerns in a timely manner. Your complaint will be thoroughly investigated by our Compliance team.
+              We take client complaints seriously and have detailed procedures to address your concerns. Your complaint will be thoroughly investigated by our Compliance team.
             </p>
           </div>
         </div>
