@@ -108,12 +108,12 @@ export function CaptchaBox({ onVerificationComplete, onSubmit, isSubmitting }: C
             <Button
               type="button"
               size="sm"
-              className="w-full bg-blue-900 hover:bg-blue-800 text-white"
+              className="w-32 h-8 bg-blue-900 hover:bg-blue-800 text-white text-xs"
               disabled={!isVerified || isSubmitting}
               aria-disabled={!isVerified || isSubmitting}
               onClick={onSubmit}
             >
-              {isSubmitting ? "Submitting..." : "Submit Complaint"}
+              {isSubmitting ? "Submitting..." : "Submit"}
             </Button>
             {!isVerified && (
               <p className="text-xs text-muted-foreground text-center mt-2">
