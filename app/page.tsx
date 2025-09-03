@@ -25,7 +25,15 @@ export default function Home() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccessBanner, setShowSuccessBanner] = useState(false);
   const [showSuccessScreen, setShowSuccessScreen] = useState(false);
-  const [submittedComplaint, setSubmittedComplaint] = useState<any>(null);
+  const [submittedComplaint, setSubmittedComplaint] = useState<{
+    fullName: string;
+    email: string;
+    phoneNumber?: string;
+    sterlingAdvisorName: string;
+    complaintDescription: string;
+    supportingDocumentation?: string;
+    uploadedFiles: Array<{ name: string; size: number; type: string }>;
+  } | null>(null);
   const [ticketNumber, setTicketNumber] = useState<string>("");
 
   const {
@@ -237,7 +245,7 @@ export default function Home() {
               </SectionCard>
 
               {/* Complaint Details */}
-              <SectionCard 
+              <SectionCard
                 title="Complaint Details"
                 description="Please provide a detailed description of your complaint. Include relevant dates, specific incidents, and any other information that will help us investigate your concerns effectively."
               >
@@ -286,9 +294,9 @@ export default function Home() {
               {/* Supporting Documentation Upload */}
               <FileDropzone onFilesChange={setUploadedFiles} />
 
-              {/* Security Verification */}
-              <CaptchaBox 
-                onVerificationComplete={setIsCaptchaVerified} 
+              {/* Security Verification & Submit Button */}
+              <CaptchaBox
+                onVerificationComplete={setIsCaptchaVerified}
                 onSubmit={handleSubmit(onSubmit)}
                 isSubmitting={isSubmitting}
               />

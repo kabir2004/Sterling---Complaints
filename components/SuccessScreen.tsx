@@ -59,7 +59,7 @@ export function SuccessScreen({ complaintData, ticketNumber, onNewComplaint }: S
               <div>
                 <h3 className="text-lg font-semibold mb-4">Need Help?</h3>
                 <p className="text-muted-foreground mb-4">
-                  We're here to help you with your complaint or any questions you may have.
+                  We&apos;re here to help you with your complaint or any questions you may have.
                 </p>
               </div>
 
