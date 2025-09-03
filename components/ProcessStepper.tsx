@@ -34,24 +34,24 @@ const processSteps = [
 export function ProcessStepper() {
   return (
     <div className="w-full">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
         {processSteps.map((step) => {
           const IconComponent = step.icon;
           return (
             <Card key={step.id} className="relative overflow-hidden hover:shadow-lg hover:shadow-blue-900/20 hover:border-blue-200 transition-all duration-300 group">
-              <CardContent className="p-6">
-                <div className="flex items-start gap-4">
+              <CardContent className="p-4">
+                <div className="flex items-start gap-3">
                   <div className="flex-shrink-0">
-                    <Badge variant="outline" className="mb-2 group-hover:bg-blue-50 group-hover:border-blue-200 group-hover:text-blue-700 transition-colors duration-300">
+                    <Badge variant="outline" className="mb-1.5 text-xs px-2 py-0.5 group-hover:bg-blue-50 group-hover:border-blue-200 group-hover:text-blue-700 transition-colors duration-300">
                       {step.id}
                     </Badge>
-                    <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-blue-100 group-hover:shadow-lg group-hover:shadow-blue-900/20 transition-all duration-300">
-                      <IconComponent className="h-4 w-4 text-primary group-hover:text-blue-600 transition-colors duration-300" />
+                    <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-blue-100 group-hover:shadow-lg group-hover:shadow-blue-900/20 transition-all duration-300">
+                      <IconComponent className="h-3 w-3 text-primary group-hover:text-blue-600 transition-colors duration-300" />
                     </div>
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="font-semibold text-sm mb-1 group-hover:text-blue-900 transition-colors duration-300">{step.title}</h3>
-                    <p className="text-xs text-muted-foreground leading-relaxed group-hover:text-blue-700 transition-colors duration-300">
+                    <h3 className="font-semibold text-xs mb-0.5 group-hover:text-blue-900 transition-colors duration-300">{step.title}</h3>
+                    <p className="text-xs text-muted-foreground leading-tight group-hover:text-blue-700 transition-colors duration-300">
                       {step.description}
                     </p>
                   </div>
