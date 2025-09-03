@@ -8,7 +8,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
 import { toast } from "sonner";
 import { ProcessStepper } from "@/components/ProcessStepper";
 import { CaptchaBox } from "@/components/CaptchaBox";
@@ -23,7 +22,7 @@ interface FileWithPreview extends File {
 
 export default function Home() {
   const [isCaptchaVerified, setIsCaptchaVerified] = useState(false);
-  const [uploadedFiles, setUploadedFiles] = useState<FileWithPreview[]>([]);
+  const [, setUploadedFiles] = useState<FileWithPreview[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccessBanner, setShowSuccessBanner] = useState(false);
 
@@ -39,7 +38,7 @@ export default function Home() {
 
   const complaintDescription = watch("complaintDescription", "");
 
-  const onSubmit = async (data: ComplaintFormData) => {
+  const onSubmit = async (_data: ComplaintFormData) => {
     if (!isCaptchaVerified) {
       toast.error("Please complete the security verification first");
       return;
@@ -55,7 +54,7 @@ export default function Home() {
     
     // Show success toast
     toast.success("Complaint submitted", {
-      description: "Thank you. You'll receive an acknowledgement within 5 business days.",
+      description: "Thank you. You&apos;ll receive an acknowledgement within 5 business days.",
     });
 
     // Scroll to top
@@ -79,7 +78,7 @@ export default function Home() {
             <div className="flex items-center justify-center">
               <div className="text-green-800 text-center">
                 <p className="font-medium">✓ Complaint submitted successfully!</p>
-                <p className="text-sm">You'll receive an acknowledgement within 5 business days.</p>
+                <p className="text-sm">You&apos;ll receive an acknowledgement within 5 business days.</p>
               </div>
             </div>
           </div>
