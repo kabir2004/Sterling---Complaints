@@ -12,6 +12,7 @@ import { CaptchaBox } from "@/components/CaptchaBox";
 import { FileDropzone } from "@/components/FileDropzone";
 import { SectionCard } from "@/components/SectionCard";
 import { Sidebar } from "@/components/Sidebar";
+import { SuccessScreen } from "@/components/SuccessScreen";
 import { complaintFormSchema, type ComplaintFormData } from "@/lib/validation";
 
 interface FileWithPreview extends File {
@@ -20,9 +21,12 @@ interface FileWithPreview extends File {
 
 export default function Home() {
   const [isCaptchaVerified, setIsCaptchaVerified] = useState(false);
-  const [, setUploadedFiles] = useState<FileWithPreview[]>([]);
+  const [uploadedFiles, setUploadedFiles] = useState<FileWithPreview[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccessBanner, setShowSuccessBanner] = useState(false);
+  const [showSuccessScreen, setShowSuccessScreen] = useState(false);
+  const [submittedComplaint, setSubmittedComplaint] = useState<any>(null);
+  const [ticketNumber, setTicketNumber] = useState<string>("");
 
   const {
     register,
@@ -36,7 +40,25 @@ export default function Home() {
 
   const complaintDescription = watch("complaintDescription", "");
 
-  const onSubmit = async (_data: ComplaintFormData) => {
+  const generateTicketNumber = (): string => {
+    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const numbers = "0123456789";
+    let ticket = "SM-";
+    
+    // Add 2 random letters
+    for (let i = 0; i < 2; i++) {
+      ticket += letters.charAt(Math.floor(Math.random() * letters.length));
+    }
+    
+    // Add 4 random numbers
+    for (let i = 0; i < 4; i++) {
+      ticket += numbers.charAt(Math.floor(Math.random() * numbers.length));
+    }
+    
+    return ticket;
+  };
+
+  const onSubmit = async (data: ComplaintFormData) => {
     if (!isCaptchaVerified) {
       toast.error("Please complete the security verification first");
       return;
@@ -47,25 +69,55 @@ export default function Home() {
     // Simulate form submission
     await new Promise(resolve => setTimeout(resolve, 1000));
     
+    // Generate ticket number
+    const newTicketNumber = generateTicketNumber();
+    setTicketNumber(newTicketNumber);
+    
+    // Prepare complaint data for success screen
+    const complaintData = {
+      fullName: data.fullName,
+      email: data.email,
+      phoneNumber: data.phoneNumber,
+      sterlingAdvisorName: data.sterlingAdvisorName,
+      complaintDescription: data.complaintDescription,
+      supportingDocumentation: data.supportingDocumentation,
+      uploadedFiles: uploadedFiles.map(file => ({
+        name: file.name,
+        size: file.size,
+        type: file.type
+      }))
+    };
+    
+    setSubmittedComplaint(complaintData);
     setIsSubmitting(false);
-    setShowSuccessBanner(true);
+    setShowSuccessScreen(true);
     
     // Show success toast
     toast.success("Complaint submitted", {
-      description: "Thank you. You&apos;ll receive an acknowledgement within 5 business days.",
+      description: `Thank you. Your ticket number is ${newTicketNumber}`,
     });
-
-    // Scroll to top
-    window.scrollTo({ top: 0, behavior: "smooth" });
-
-    // Clear form after a delay
-    setTimeout(() => {
-      reset();
-      setUploadedFiles([]);
-      setIsCaptchaVerified(false);
-      setShowSuccessBanner(false);
-    }, 3000);
   };
+
+  const handleNewComplaint = () => {
+    setShowSuccessScreen(false);
+    setSubmittedComplaint(null);
+    setTicketNumber("");
+    reset();
+    setUploadedFiles([]);
+    setIsCaptchaVerified(false);
+    setShowSuccessBanner(false);
+  };
+
+  // Show success screen if complaint was submitted
+  if (showSuccessScreen && submittedComplaint && ticketNumber) {
+    return (
+      <SuccessScreen
+        complaintData={submittedComplaint}
+        ticketNumber={ticketNumber}
+        onNewComplaint={handleNewComplaint}
+      />
+    );
+  }
 
   return (
     <div className="min-h-screen bg-white">
