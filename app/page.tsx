@@ -311,8 +311,9 @@ export default function Home() {
                     id="complaintDescription"
                     {...register("complaintDescription")}
                     placeholder="Please provide a detailed description of your complaint..."
-                    className={`min-h-32 ${errors.complaintDescription ? "border-destructive" : ""} focus:border-black focus:ring-black`}
+                    className={`min-h-40 max-h-96 resize-y ${errors.complaintDescription ? "border-destructive" : ""} focus:border-black focus:ring-black`}
                     aria-describedby={errors.complaintDescription ? "complaint-error" : "complaint-help"}
+                    rows={8}
                   />
                   <div className="flex justify-between items-center text-sm">
                     <div>
@@ -326,8 +327,9 @@ export default function Home() {
                         </p>
                       )}
                     </div>
-                    <span className="text-muted-foreground">
+                    <span className={`text-sm font-medium ${complaintDescription.length >= 200 ? 'text-green-600' : 'text-muted-foreground'}`}>
                       {complaintDescription.length}/200 minimum
+                      {complaintDescription.length >= 200 && ' ✓'}
                     </span>
                   </div>
                 </div>
@@ -340,8 +342,14 @@ export default function Home() {
                     id="supportingDocumentation"
                     {...register("supportingDocumentation")}
                     placeholder="List any supporting documentation you have (e.g., statements, emails, correspondence, etc.)"
-                    className="min-h-20 focus:border-black focus:ring-black"
+                    className="min-h-32 max-h-64 resize-y focus:border-black focus:ring-black"
+                    rows={4}
                   />
+                  <div className="flex justify-end">
+                    <span className="text-xs text-muted-foreground">
+                      {watch("supportingDocumentation", "").length} characters
+                    </span>
+                  </div>
                 </div>
               </SectionCard>
 
