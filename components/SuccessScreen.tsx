@@ -193,8 +193,8 @@ export function SuccessScreen({ complaintData, ticketNumber, onNewComplaint }: S
             {/* Complaint Description */}
             <div>
               <h3 className="font-semibold mb-3">Complaint Description</h3>
-              <div className="bg-gray-50 p-4 rounded-lg">
-                <p className="text-sm whitespace-pre-wrap">{complaintData.complaintDescription}</p>
+              <div className="bg-gray-50 p-4 rounded-lg max-h-96 overflow-y-auto">
+                <p className="text-sm whitespace-pre-wrap break-words overflow-wrap-anywhere">{complaintData.complaintDescription}</p>
               </div>
             </div>
 
@@ -204,8 +204,8 @@ export function SuccessScreen({ complaintData, ticketNumber, onNewComplaint }: S
                 <Separator />
                 <div>
                   <h3 className="font-semibold mb-3">Supporting Documentation</h3>
-                  <div className="bg-gray-50 p-4 rounded-lg">
-                    <p className="text-sm whitespace-pre-wrap">{complaintData.supportingDocumentation}</p>
+                  <div className="bg-gray-50 p-4 rounded-lg max-h-64 overflow-y-auto">
+                    <p className="text-sm whitespace-pre-wrap break-words overflow-wrap-anywhere">{complaintData.supportingDocumentation}</p>
                   </div>
                 </div>
               </>
@@ -220,8 +220,8 @@ export function SuccessScreen({ complaintData, ticketNumber, onNewComplaint }: S
                   <div className="space-y-2">
                     {complaintData.uploadedFiles.map((file, index) => (
                       <div key={index} className="flex items-center justify-between bg-gray-50 p-3 rounded-lg">
-                        <span className="text-sm font-medium">{file.name}</span>
-                        <span className="text-xs text-muted-foreground">{formatFileSize(file.size)}</span>
+                        <span className="text-sm font-medium break-words overflow-wrap-anywhere flex-1 mr-2">{file.name}</span>
+                        <span className="text-xs text-muted-foreground flex-shrink-0">{formatFileSize(file.size)}</span>
                       </div>
                     ))}
                   </div>
