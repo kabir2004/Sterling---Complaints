@@ -87,7 +87,7 @@ export function FileDropzone({ onFilesChange }: FileDropzoneProps) {
             `}
           >
             <input {...getInputProps()} />
-            <Upload className="h-8 w-8 mx-auto mb-4 text-muted-foreground" />
+            <Upload className="h-8 w-8 mx-auto mb-4 text-muted-foreground" aria-hidden="true" />
             {isDragActive ? (
               <p className="text-sm text-muted-foreground">Drop the files here...</p>
             ) : (

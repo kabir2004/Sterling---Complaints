@@ -70,7 +70,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
+    <div className="min-h-screen bg-white">
       {/* Success Banner */}
       {showSuccessBanner && (
         <div className="bg-green-50 border-b border-green-200 py-4">
