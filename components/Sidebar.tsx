@@ -7,7 +7,7 @@ import { Mail, Phone, MapPin } from "lucide-react";
 export function Sidebar() {
   return (
     <div className="space-y-6">
-      <Card className="sticky top-6">
+      <Card className="sticky top-6 z-10">
         <CardHeader>
           <CardTitle className="text-lg">What happens after you submit</CardTitle>
         </CardHeader>
@@ -33,7 +33,7 @@ export function Sidebar() {
         </CardContent>
       </Card>
 
-      <Card>
+      <Card className="sticky z-10" style={{ top: 'calc(6rem + 200px)' }}>
         <CardHeader>
           <CardTitle className="text-lg">Contact</CardTitle>
         </CardHeader>
