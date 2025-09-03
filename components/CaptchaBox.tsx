@@ -104,11 +104,11 @@ export function CaptchaBox({ onVerificationComplete, onSubmit, isSubmitting }: C
             </div>
           )}
 
-          <div className="pt-4 border-t">
+          <div className="pt-4 border-t flex justify-center">
             <Button
               type="button"
               size="sm"
-              className="w-32 h-8 bg-blue-900 hover:bg-blue-800 text-white text-xs"
+              className="w-32 h-8 bg-blue-900 hover:bg-blue-800 text-white"
               disabled={!isVerified || isSubmitting}
               aria-disabled={!isVerified || isSubmitting}
               onClick={onSubmit}
