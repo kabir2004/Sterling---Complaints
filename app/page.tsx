@@ -297,7 +297,7 @@ export default function Home() {
               {/* Security Verification & Submit Button */}
               <CaptchaBox
                 onVerificationComplete={setIsCaptchaVerified}
-                onSubmit={handleSubmit(onSubmit)}
+                onSubmit={() => handleSubmit(onSubmit)()}
                 isSubmitting={isSubmitting}
               />
             </form>
